@@ -10,19 +10,19 @@ app.get('/', function(req, res) {
 });
 
 
-app.get("/json", function(req, res) {
-  let message = "Hello json";
+app.get("/json", (req, res) => {
+  let msg = "Hello json";
   
-  if (process.env.MESSAGE_STYLE === "uppercase") {
-    message = message.toUpperCase();
+
+  if (process.env['MESSAGE_STYLE'] === 'uppercase') {
+    msg = msg.toUpperCase();
   }
   
-  res.json({"message": message});
+  res.json({ "message": msg });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+const listener = app.listen(process.env.PORT || 3000, function() {
+  console.log('Your app is listening on port ' + listener.address().port);
 });
 
 
