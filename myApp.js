@@ -1,15 +1,21 @@
-let express = require('express');
-let app = express();
+require('dotenv').config(); 
+const express = require('express');
+const app = express();
 
-app.get('/json', function(req, res) {
-  let response = { message: "Hello json" };
+app.get("/json", (req, res) => {
   
-  // Transform to uppercase only if FCC sets MESSAGE_STYLE
+  let message = "Hello json";
+
   if (process.env.MESSAGE_STYLE === "uppercase") {
-    response.message = response.message.toUpperCase();
+    message = message.toUpperCase(); 
   }
 
-  res.json(response);
+  res.json({ message: message });
+});
+
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
 });
 
 module.exports = app;
