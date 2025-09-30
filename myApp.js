@@ -1,38 +1,23 @@
-require('dotenv').config();
-
 let express = require('express');
 let app = express();
 
+// Serve static assets from /public
 app.use('/public', express.static(__dirname + '/public'));
 
-app.get('/', (req, res) => {
+// Serve HTML file at root
+app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.get('/json', (req, res) => {
+// Serve JSON at /json
+app.get('/json', function(req, res) {
   let response = { message: "Hello json" };
-
-  // Transform message if MESSAGE_STYLE=uppercase
+  // Transform to uppercase only if MESSAGE_STYLE === "uppercase"
   if (process.env.MESSAGE_STYLE === "uppercase") {
     response.message = response.message.toUpperCase();
   }
-
   res.json(response);
 });
 
-
-/*app.listen(3000,function(){
- console.log("server runing on port 3000");
-});*/
-
-
-
-
-
-
-
-
-
-
-
- module.exports = app;
+// Export the app for FCC testing
+module.exports = app;
