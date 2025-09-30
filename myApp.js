@@ -1,7 +1,6 @@
-
 require('dotenv').config();
-var express = require('express');
-var app = express();
+let express = require('express');
+let app = express();
 
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -12,16 +11,19 @@ app.get('/', function(req, res) {
 
 
 app.get("/json", function(req, res) {
-  var response = { "message": "Hello json" };
+  let message = "Hello json";
   
-
   if (process.env.MESSAGE_STYLE === "uppercase") {
-    response.message = response.message.toUpperCase();
+    message = message.toUpperCase();
   }
   
-  res.json(response);
+  res.json({"message": message});
 });
 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 
 
