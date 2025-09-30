@@ -1,23 +1,20 @@
-// 1. Load dotenv first
-require('dotenv').config();
+require('dotenv').config(); 
 
 const express = require('express');
 const app = express();
 
-// 2. /json route
 app.get('/json', (req, res) => {
-  let message = "Hello json";
+  let message;
 
-  // Read the environment variable INSIDE the route
-  if (process.env.MESSAGE_STYLE === "uppercase") {
-    message = message.toUpperCase();
+  if (process.env.MESSAGE_STYLE && process.env.MESSAGE_STYLE.toLowerCase() === 'uppercase') {
+    message = "HELLO JSON"; 
+  } else {
+    message = "Hello json"; 
   }
 
-  res.json({ message: message });
+  res.json({ message: message }); 
 });
 
-// 3. Start server
-app.listen(3000);
-console.log('Server running on port 3000');
+app.listen(3000, () => console.log("Server running on port 3000"));
 
-module.exports = app;
+module.exports = app; 
