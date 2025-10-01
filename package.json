@@ -8,8 +8,8 @@
     "express": "^4.21.2",
     "fcc-express-bground": "https://github.com/freeCodeCamp/fcc-express-bground-pkg.git"
   },
-  "main": "myApp.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node myApp.js"
+    "start": "node server.js"
   }
 }
