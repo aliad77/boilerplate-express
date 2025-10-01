@@ -8,15 +8,14 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.get('/json',(req,res)=>{
-    if(process.env.MESSAGE_STYLE==="uppercase"){
-      res.json({"message": "HELLO JSON"})
-
-    }
-    else{
-      res.json({"message": "Hello json"})
-    }
-
+app.get("/json", function(req, res) {
+  var response = {"message": "Hello json"};
+  
+  if (process.env.MESSAGE_STYLE=== "uppercase") {
+    response.message = response.message.toUpperCase();
+  }
+  
+  res.json(response);
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
