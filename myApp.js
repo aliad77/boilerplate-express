@@ -24,23 +24,19 @@ app.get('/', function(req,res){
   res.sendFile(__dirname + '/views/index.html');
 });
 
-/*app.get('/json', function(req, res) {
-  let response = { message: "Hello json" };
-  if (process.env.MESSAGE_STYLE === "uppercase") {
-    response.message = response.message.toUpperCase();
-  }
-  res.json(response);
-});
-*/
-app.get('/json', (req, res) => {
-  let message = "Hello json";
+//ch6
+app.get('/json', (req,res)=>{
+let response = {
+"message": "Hello json"
+};
+if (process.env.MESSAGE_STYLE ==="uppercase" ){
+  response.message = response.message.toUpperCase();
+}
+res.json(response);
 
-  if (process.env.MESSAGE_STYLE === "uppercase") {
-    message = message.toUpperCase();
-  }
-
-  res.json({ message: message });
 });
+
+
 
 app.get('/now', (req, res, next) => {
   req.time = new Date().toString(); 
