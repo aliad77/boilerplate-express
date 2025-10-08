@@ -6,6 +6,12 @@ let app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
+app.post('/name', (req, res) => {
+  const firstName = req.body.first;
+  const lastName = req.body.last;
+  res.json({ name: `${firstName} ${lastName}` });
+});
+
 
 app.use((req, res, next) => {
   console.log(req.method + " " + req.path + " - " + req.ip);
